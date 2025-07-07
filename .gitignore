@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.safetensors
+*.pt
+*.bin
+logs/
+.cache/
+.idea/
+.vscode/
