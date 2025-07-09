@@ -13,6 +13,18 @@ A lightweight local GenAI tool that lets you test and score LLM responses using 
 
 ---
 
+##  Evaluation Dashboard Features
+
+This Streamlit app logs prompts, LLM responses, and auto-scores them using ROUGE. Includes:
+
+- ROUGE filter and bar chart
+- Score-based prompt analysis
+- SQLite + CSV logging
+
+![Dashboard](analytics_dashboard.png)
+
+---
+
 ## Screenshot
 
 <img src="demo-1.png" alt="Prompt Evaluation Dashboard" width="800">
