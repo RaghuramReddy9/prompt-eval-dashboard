@@ -1,5 +1,8 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
 
 model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 
