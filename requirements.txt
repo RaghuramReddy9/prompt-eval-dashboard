@@ -1,15 +1,8 @@
-# Core UI
 streamlit
-
-# LLMs
+pandas
+evaluate
+rouge-score
 google-generativeai
 transformers
 torch
-
-# Evaluation
-evaluate
-rouge-score
-
-# Utilities
-pandas
 python-dotenv

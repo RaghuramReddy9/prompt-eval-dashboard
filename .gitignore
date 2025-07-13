@@ -1,9 +1,11 @@
 __pycache__/
 *.pyc
-*.safetensors
-*.pt
-*.bin
+.venv/
+.env
 logs/
-.cache/
-.idea/
+*.csv
+*.pt
+*.safetensors
 .vscode/
+.idea/
+.cache/
