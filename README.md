@@ -1,34 +1,41 @@
-# Prompt Evaluation Dashboard (Local GenAI App)
+# LLM Model Comparator: Gemini vs TinyLLaMA
 
-A lightweight local GenAI tool that lets you test and score LLM responses using **TinyLLaMA (1.1B)** and **ROUGE-L** evaluation — no API, no cost, 100% offline.
+This project lets you compare prompt responses from two LLMs — **Google Gemini 1.5 Flash** and **TinyLLaMA** — using the **ROUGE-L metric**. It evaluates which model gives a better answer compared to a reference answer and visualizes the results.
+
+Built with **Streamlit**, this app is perfect for developers, researchers, and prompt engineers who want to benchmark lightweight and powerful models.
 
 ---
 
 ## Features
 
--  Accepts user prompts and generates AI responses using TinyLLaMA (1.1B)
--  Scores responses with ROUGE-L against a reference answer
--  Logs each entry with timestamp in a Streamlit dashboard
--  Works fully offline on CPU — perfect for local testing or LLM evaluations
+
+-  Compare two LLM responses to the same prompt
+-  ROUGE-L scoring against your reference answer
+-  Dynamic bar chart to visualize model performance
+-  Logs all responses, scores, and timestamps to `model_comparison_log.csv`
+-  Uses `.env` to securely hide your API keys
 
 ---
 
-##  Evaluation Dashboard Features
+## Example Use Case
 
-This Streamlit app logs prompts, LLM responses, and auto-scores them using ROUGE. Includes:
+> **Prompt**: “What is fine-tuning in machine learning?”  
+> **Reference Answer**: “Fine-tuning means adapting a pre-trained model on a smaller, task-specific dataset.”
 
-- ROUGE filter and bar chart
-- Score-based prompt analysis
-- SQLite + CSV logging
-
-![Dashboard](analytics_dashboard.png)
+The app compares both models’ answers to the reference, scores them with ROUGE, and shows a visual chart of who performed better.
 
 ---
 
-## Screenshot
+##  Tech Stack
 
-<img src="demo-1.png" alt="Prompt Evaluation Dashboard" width="800">
-<img src="demo.png" alt="Prompt Evaluation Dashboard" width="800">
+| Tool            | Purpose                            |
+|-----------------|------------------------------------|
+| Streamlit       | Frontend Web UI                    |
+| Google Gemini   | LLM API (via `google.generativeai`)|
+| TinyLLaMA       | Local lightweight LLM (PyTorch)    |
+| Evaluate + ROUGE| Scoring language output similarity |
+| Pandas          | Data processing                    |
+| SQLite          | Optional (if logging to DB)        |
 
 
 ---
@@ -38,54 +45,48 @@ This Streamlit app logs prompts, LLM responses, and auto-scores them using ROUGE
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/RaghuramReddy9/prompt-eval-dashboard.git
-cd prompt-eval-dashboard
+cd llm-model-comparator
 ```
 
 ### 2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
+### 3. Add Your `.env` File
+```bash
+GEMINI_API_KEY=your_google_api_key_here
+```
 
-### 3. Launch the app
+### 4. Launch the app
 ```bash
 streamlit run app.py
 ```
 ⚠️ First-time model loading may take 1–2 minutes (~2GB). After that, it's instant.
 
-##  Tech Stack.
-```bash
-| Layer      | Tool/Library                                                                                     |
-| ---------- | ------------------------------------------------------------------------------------------------ |
-| UI         | [Streamlit](https://streamlit.io)                                                                |
-| Model      | [TinyLLaMA 1.1B](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0) (via `transformers`) |
-| Evaluation | [`evaluate` by Hugging Face](https://huggingface.co/docs/evaluate)                               |
-| Backend    | Python + `torch` + `pandas`                                                                      |
-```
 
 ### Folder Structure
 ```perl
-prompt-eval-dashboard/
-├── app.py                  # Streamlit UI
+├── app.py                   # Main Streamlit app
+├── llm.py                   # Gemini & TinyLLaMA model logic
 ├── utils/
-│   └── llm.py              # TinyLLaMA model logic
+│   └── db.py                # Optional SQLite logging
+├── logs/
+│   └── model_comparison_log.csv
+├── .env                     # Your Gemini API key (excluded from Git)
 ├── requirements.txt
-├── demo.png                # Screenshot
+├── .gitignore
 └── README.md
+
 ```
-###  Future Enhancements
 
-     1. Add BLEU and Perplexity scoring
-
-     2. Save logs to CSV or SQLite
-
-    3. Compare multiple LLMs side by side
 
 ### 👨‍💻 Author
 ```
- Raghuramreddy Thirumalareddy
+Raghuram Reddy
+Aspiring GenAI Engineer | Building real-world LLM apps
 ```
 
-
-
-
-
+### 📄 License
+```
+MIT License
+```
